@@ -1,0 +1,50 @@
+import java.util.Random;
+import java.util.Scanner;
+
+public class DieRollar {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        boolean playAgain = true;
+
+        while (playAgain) {
+
+            int throwCount = 0;
+              boolean foundTriple = false;
+
+            System.out.printf("%-10s %-10s %-10s %-10s %-10s%n", "Roll", "Die1", "Die2", "Die3", "Sum");
+              System.out.println("----------------------------------------------------------");
+
+            while (!foundTriple) {
+                throwCount++;
+
+                int die1 = random.nextInt(6) + 1;
+                    int die2 = random.nextInt(6) + 1;
+                        int die3 = random.nextInt(6) + 1;
+
+                int sum = die1 + die2 + die3;
+
+                System.out.printf("%-10d %-10d %-10d %-10d %-10d%n", throwCount, die1, die2, die3, sum);
+
+                if (die1 == die2 && die2 == die3) {
+                    foundTriple = true;
+                }
+            }
+
+            System.out.println("A triple was found after " + throwCount + " rolls!");
+
+            System.out.print("Would you like to play again? [Y/N]: ");
+                String userResponse = scanner.nextLine().trim().toLowerCase();
+
+            if (!userResponse.equals("Y")) {
+                playAgain = false;
+            }
+
+            System.out.println();
+        }
+
+        System.out.println("Thank you for playing!");
+        scanner.close();
+    }
+}
